@@ -1,8 +1,12 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
+<<<<<<< HEAD
 import base64
 import requests
 from fastapi import HTTPException
+=======
+from app.services.azure_devops import AzureDevOpsClient, AzureDevOpsError
+>>>>>>> 85fd8c9f4e83f397b8ecc3963dbd3da21d116081
 
 router = APIRouter()
 
@@ -28,7 +32,31 @@ class AzureProjectConfig(BaseModel):
     project: str
     pat: str
 
+<<<<<<< HEAD
 from app.services.langgraph_coordinator import build_graph
+=======
+
+@router.post("/ado/work-items")
+def fetch_work_items(config: AzureProjectConfig):
+    client = AzureDevOpsClient(org=config.org, project=config.project, pat=config.pat)
+
+    try:
+        work_items = client.get_work_items()
+    except AzureDevOpsError as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
+
+    return [
+        {
+            "id": item["id"],
+            "type": item["fields"]["System.WorkItemType"],
+            "title": item["fields"]["System.Title"],
+            "description": item["fields"].get("System.Description", "")
+        }
+        for item in work_items
+    ]
+
+from app.services.coordinator import Coordinator
+>>>>>>> 85fd8c9f4e83f397b8ecc3963dbd3da21d116081
 from app.services.logger import log
 
 graph = build_graph()
