@@ -1,17 +1,25 @@
 import os
 from openai import OpenAI
 
-class LLMClient:
-    def __init__(self):
-        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+HF_API_KEY = os.getenv("HF_API_KEY", "")
 
-    def generate_code(self, prompt: str) -> str:
-        response = self.client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[
-                {"role": "system", "content": "You are a senior backend engineer."},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=0.2
-        )
-        return response.choices[0].message.content
+client = OpenAI(
+    base_url="https://router.huggingface.co/v1",
+    api_key=HF_API_KEY,
+)
+
+MODEL = "Qwen/Qwen2.5-Coder-7B-Instruct:nscale"
+
+
+def call_llm(prompt: str, max_tokens: int = 800) -> str:
+    response = client.chat.completions.create(
+        model=MODEL,
+        messages=[
+            {"role": "system", "content": "You are a senior software engineer."},
+            {"role": "user", "content": prompt},
+        ],
+        max_tokens=max_tokens,
+        temperature=0.2,
+    )
+
+    return response.choices[0].message.content

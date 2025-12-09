@@ -5,8 +5,8 @@ class LLMBackendAgent:
     def __init__(self):
         self.llm = LLMClient()
 
-    def generate_api(self, work_item: dict, project_name: str):
-        base = f"../generated_projects/{project_name}/frontend"
+    def generate_api(self, work_item: dict, project_name: str, base_path: str):
+        base = os.path.join(base_path, "backend", "routes")
         os.makedirs(base, exist_ok=True)
 
         prompt = f"""

@@ -1,24 +1,29 @@
 import os
+from app.services.llm_client import call_llm
 
 class FrontendAgent:
-    def generate_ui(self, work_item: dict, project_name: str):
-        base = f"../generated_projects/{project_name}/backend/routes"
-        os.makedirs(base, exist_ok=True)
+    def generate_ui(self, story, project_name, base_path):
+        prompt = f"""
+Generate a React JSX component.
 
-        title = work_item.get("title", "Generated UI")
+Story:
+{story['title']}
+{story.get('description', '')}
 
-        code = f"""
-export default function GeneratedComponent() {{
-  return (
-    <div style={{ padding: "20px" }}>
-      <h1>{title}</h1>
-    </div>
-  );
-}}
+Rules:
+- Functional React component
+- Tailwind CSS classes only
+- No external libraries
+- No npm installs assumed
 """
 
-        path = f"{base}/Generated.jsx"
+        code = call_llm(prompt)
+
+        base = os.path.join(base_path, "frontend")
+        os.makedirs(base, exist_ok=True)
+
+        path = os.path.join(base, "Generated.jsx")
         with open(path, "w", encoding="utf-8") as f:
             f.write(code)
 
-        return f"Frontend created at {path}"
+        return {"status": "OK", "file": path}

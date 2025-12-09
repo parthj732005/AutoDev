@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import auth, projects
+
+from app.routes import auth, projects, logs, files, download
 
 app = FastAPI(title="AutoDev Backend")
 
@@ -10,18 +11,17 @@ origins = [
     "http://127.0.0.1:5173",
 ]
 
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=origins,      # ✅ use defined origins
     allow_credentials=True,
-    allow_methods=["*"],      # allow GET, POST, OPTIONS, etc
-    allow_headers=["*"],      # allow all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
-from app.routes import logs
 
 # Routers
-app.include_router(auth.router, prefix="/auth", tags=["Auth"])
-app.include_router(projects.router, prefix="/projects", tags=["Projects"])
-
-app.include_router(logs.router, prefix="/logs", tags=["Logs"])
+app.include_router(auth.router, prefix="/auth")
+app.include_router(projects.router, prefix="/projects")
+app.include_router(logs.router, prefix="/logs")
+app.include_router(files.router, prefix="/files")
+app.include_router(download.router, prefix="/download")
