@@ -1,5 +1,12 @@
 import base64
+from typing import List, Dict, Any
+
 import requests
+from requests import RequestException
+
+
+class AzureDevOpsError(Exception):
+    """Raised when Azure DevOps API calls fail."""
 
 
 class AzureDevOpsClient:
@@ -16,7 +23,7 @@ class AzureDevOpsClient:
             "Content-Type": "application/json"
         }
 
-    def get_work_items(self):
+    def get_work_items(self) -> List[Dict[str, Any]]:
         wiql_url = (
             f"{self.base_url}/{self.project}/_apis/wit/wiql"
             f"?api-version=7.0"
@@ -31,10 +38,13 @@ class AzureDevOpsClient:
             """
         }
 
-        r = requests.post(wiql_url, headers=self.headers, json=wiql)
-        r.raise_for_status()
+        try:
+            response = requests.post(wiql_url, headers=self.headers, json=wiql)
+            response.raise_for_status()
+        except RequestException as exc:
+            raise AzureDevOpsError(f"Failed to query work item IDs: {exc}") from exc
 
-        ids = [item["id"] for item in r.json().get("workItems", [])]
+        ids = [item["id"] for item in response.json().get("workItems", [])]
         if not ids:
             return []
 
@@ -44,6 +54,10 @@ class AzureDevOpsClient:
             f"?ids={ids_str}&api-version=7.0"
         )
 
-        r2 = requests.get(details_url, headers=self.headers)
-        r2.raise_for_status()
-        return r2.json()["value"]
+        try:
+            detailed_response = requests.get(details_url, headers=self.headers)
+            detailed_response.raise_for_status()
+        except RequestException as exc:
+            raise AzureDevOpsError(f"Failed to fetch work item details: {exc}") from exc
+
+        return detailed_response.json().get("value", [])

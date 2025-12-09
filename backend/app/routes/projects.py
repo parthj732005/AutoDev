@@ -1,6 +1,6 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from app.services.azure_devops import AzureDevOpsClient
+from app.services.azure_devops import AzureDevOpsClient, AzureDevOpsError
 
 router = APIRouter()
 
@@ -29,13 +29,12 @@ class AzureProjectConfig(BaseModel):
 
 @router.post("/ado/work-items")
 def fetch_work_items(config: AzureProjectConfig):
-    client = AzureDevOpsClient(
-        org=config.org,
-        project=config.project,
-        pat=config.pat
-    )
+    client = AzureDevOpsClient(org=config.org, project=config.project, pat=config.pat)
 
-    work_items = client.get_work_items()
+    try:
+        work_items = client.get_work_items()
+    except AzureDevOpsError as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
 
     return [
         {
