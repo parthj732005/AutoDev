@@ -1,21 +1,35 @@
 from fastapi import APIRouter
 from fastapi.responses import StreamingResponse
 import time
-from app.services.logger import log_queue
+import os
 
 router = APIRouter()
 
-def log_stream():
+LOG_FILE = "app/logs/run.log"
+
+
+def stream_logs():
+    last_size = 0
+
+    # Create file if not exists
+    os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)
+    if not os.path.exists(LOG_FILE):
+        open(LOG_FILE, "w").close()
+
     while True:
-        try:
-            message = log_queue.get(timeout=1)
-            yield f"data: {message}\n\n"
-        except:
-            time.sleep(0.5)
+        current_size = os.path.getsize(LOG_FILE)
+
+        # If new content is added
+        if current_size > last_size:
+            with open(LOG_FILE, "r", encoding="utf-8") as f:
+                f.seek(last_size)
+                new_lines = f.read()
+                yield f"data: {new_lines}\n\n"
+            last_size = current_size
+
+        time.sleep(0.4)  # smoother updates
+
 
 @router.get("/stream")
-def stream_logs():
-    return StreamingResponse(
-        log_stream(),
-        media_type="text/event-stream"
-    )
+def logs_stream():
+    return StreamingResponse(stream_logs(), media_type="text/event-stream")

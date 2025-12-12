@@ -2,24 +2,32 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.routes import auth, projects, logs, files, download
+from app.db.init_db import init_db
 
+# ✅ FIRST create the app
 app = FastAPI(title="AutoDev Backend")
 
-# CORS so frontend (Vite on 5173) can talk to backend (8000)
-origins = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-]
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
+
+
+# ✅ THEN startup event
+@app.on_event("startup")
+def startup():
+    init_db()
+
+# ✅ CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,      # ✅ use defined origins
-    allow_credentials=True,
+    allow_origins=["*"],   # fine for development
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Routers
+# ✅ Routers
 app.include_router(auth.router, prefix="/auth")
 app.include_router(projects.router, prefix="/projects")
 app.include_router(logs.router, prefix="/logs")

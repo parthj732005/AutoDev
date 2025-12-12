@@ -15,7 +15,7 @@ Rules:
 - Output SQL ONLY
 """
 
-        sql = call_llm(prompt, max_tokens=400)
+        sql = call_llm(prompt, max_tokens=400)["content"]
 
         base = os.path.join(base_path, "database")
         os.makedirs(base, exist_ok=True)

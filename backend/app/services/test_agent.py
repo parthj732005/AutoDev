@@ -12,7 +12,7 @@ Rules:
 - No external dependencies
 """
 
-        code = call_llm(prompt, max_tokens=300)
+        code = call_llm(prompt, max_tokens=300)["content"]
 
         base = os.path.join(base_path, "tests")
         os.makedirs(base, exist_ok=True)
@@ -23,5 +23,6 @@ Rules:
 
         return {
             "status": "PASS",
-            "details": f"Tests generated at {path}"
+            "executed": False,
+            "details": "Tests generated. Execution skipped (demo-safe mode)."
         }

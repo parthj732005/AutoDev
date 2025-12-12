@@ -12,19 +12,22 @@ Description: {story.get('description', '')}
 
 Rules:
 - Use FastAPI
-- JWT if authentication related
-- Input validation using Pydantic
-- No database connections
-- Clean REST endpoints only
+- Use Pydantic models for request and response
+- If authentication or login related, create real API endpoints
+- Assume a database exists and endpoints are real
+- If the frontend is expected to call this API, do NOT mock data
+- Assume real requests will come from a frontend
+- Do NOT implement database connection logic
+- Keep implementation simple and runnable
 """
 
-        code = call_llm(prompt)
+        result = call_llm(prompt, max_tokens=800)["content"]
 
-        base = os.path.join(base_path, "backend", "routes")
+        base = os.path.join(base_path, "backend")
         os.makedirs(base, exist_ok=True)
 
         path = os.path.join(base, "api.py")
         with open(path, "w", encoding="utf-8") as f:
-            f.write(code)
+            f.write(result)
 
         return {"status": "OK", "file": path}

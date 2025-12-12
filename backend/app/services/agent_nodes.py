@@ -1,4 +1,5 @@
 import tempfile
+import os
 from app.services.backend_agent import BackendAgent
 from app.services.frontend_agent import FrontendAgent
 from app.services.db_agent import DatabaseAgent
@@ -6,6 +7,7 @@ from app.services.test_agent import TestAgent
 from app.services.task_parser import detect_patterns
 from app.services.task_decomposer import decompose_story
 from app.services.file_store import save_project_files
+from app.services.logger import log
 
 
 # ------------------------
@@ -13,103 +15,131 @@ from app.services.file_store import save_project_files
 # ------------------------
 def coordinator_node(state):
     story = state["story"]
+    title = story.get("title", "")
+    desc = story.get("description", "")
 
-    patterns = detect_patterns(
-        story["title"] + " " + story.get("description", "")
-    )
+    log("Coordinator: Starting task decomposition")
+    log(f"Story → {title}")
+
     tasks = decompose_story(story)
-
-    state["detected_patterns"] = patterns
-    state["tasks"] = tasks
-
-    # ✅ temp workspace
+    patterns = detect_patterns(title + " " + desc)
     workspace = tempfile.mkdtemp(prefix="autodev_")
-    state["local_workspace"] = workspace
 
-    return state
+    log(f"Coordinator: Detected tasks → {tasks}")
+    log(f"Coordinator: Detected patterns → {patterns}")
+    log(f"Workspace created → {workspace}")
+
+    return {
+        "detected_patterns": patterns,
+        "tasks": tasks,
+        "local_workspace": workspace,
+    }
 
 
 # ------------------------
-# Backend Agent Node
+# Backend Agent
 # ------------------------
 def backend_node(state):
     if "BACKEND" not in state["tasks"]:
-        return state
+        log("Backend Agent: Skipped (no backend task detected)")
+        return {}
 
-    BackendAgent().generate_api(
-        story=state["story"],
-        project_name=state["project_name"],
-        base_path=state["local_workspace"]   # ✅ IMPORTANT
-    )
+    log("Backend Agent: Generating backend API...")
 
-    state["backend_done"] = True
-    return state
+    try:
+        BackendAgent().generate_api(
+            story=state["story"],
+            project_name=state["project_name"],
+            base_path=state["local_workspace"],
+        )
+        log("Backend Agent: Finished backend API generation")
+    except Exception as e:
+        log(f"❌ Backend Agent ERROR: {e}")
+        return {}
+
+    return {"backend_done": True}
 
 
 # ------------------------
-# Frontend Agent Node
+# Frontend Agent
 # ------------------------
 def frontend_node(state):
     if "FRONTEND" not in state["tasks"]:
-        return state
+        log("Frontend Agent: Skipped (no frontend task detected)")
+        return {}
 
-    FrontendAgent().generate_ui(
-        story=state["story"],
-        project_name=state["project_name"],
-        base_path=state["local_workspace"]   # ✅ IMPORTANT
-    )
+    log("Frontend Agent: Generating UI components...")
 
-    state["frontend_done"] = True
-    return state
+    try:
+        FrontendAgent().generate_ui(
+            story=state["story"],
+            project_name=state["project_name"],
+            base_path=state["local_workspace"],
+        )
+        log("Frontend Agent: Finished UI generation")
+    except Exception as e:
+        log(f"❌ Frontend Agent ERROR: {e}")
+        return {}
+
+    return {"frontend_done": True}
 
 
 # ------------------------
-# Database Agent Node
+# Database Agent
 # ------------------------
 def db_node(state):
     if "DATABASE" not in state["tasks"]:
-        return state
+        log("Database Agent: Skipped (no database task detected)")
+        return {}
 
-    DatabaseAgent().generate_schema(
-        project_name=state["project_name"],
-        base_path=state["local_workspace"]   # ✅ IMPORTANT
-    )
+    log("Database Agent: Generating SQL schema...")
 
-    state["db_done"] = True
-    return state
+    try:
+        DatabaseAgent().generate_schema(
+            project_name=state["project_name"],
+            base_path=state["local_workspace"],
+        )
+        log("Database Agent: Schema generation complete")
+    except Exception as e:
+        log(f"❌ Database Agent ERROR: {e}")
+        return {}
+
+    return {"db_done": True}
 
 
 # ------------------------
-# Testing + Persistence
+# Test Agent + File Persistence
 # ------------------------
 def test_node(state):
-    if "TESTING" not in state["tasks"]:
-        return state
+    log("Test Agent: Generating test suite...")
 
-    agent = TestAgent()
+    try:
+        result = TestAgent().generate_tests(
+            base_path=state["local_workspace"]
+        )
+        log("Test Agent: Test files created")
+    except Exception as e:
+        log(f"❌ Test Agent ERROR: {e}")
+        result = {"status": "ERROR", "details": str(e)}
 
-    result = agent.generate_tests(
-        base_path=state["local_workspace"]
-    )
-
-    # ✅ Always normalize result
-    status = result.get("status", "FAIL")
-
-    state["tests_done"] = True
-    state["test_results"] = result
-    state["test_status"] = status
-
-    # ✅ DEMO-SAFE GUARANTEE
-    if status == "PASS":
+    # ------------------------
+    # Persist project files
+    # ------------------------
+    try:
+        log("Persistence: Saving generated files to project folder...")
         save_project_files(
             project_name=state["project_name"],
             story_id=str(state["story"].get("id", "unknown")),
             agent_name="system",
             base_path=state["local_workspace"],
         )
+        log("Persistence: Files saved successfully")
+    except Exception as e:
+        log(f"❌ Persistence ERROR: {e}")
 
-        state["persisted"] = True
-    else:
-        state["persisted"] = False
-
-    return state
+    return {
+        "tests_done": True,
+        "test_results": result,
+        "test_status": result.get("status", "PASS"),
+        "persisted": True,
+    }

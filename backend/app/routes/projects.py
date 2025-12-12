@@ -1,97 +1,53 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-<<<<<<< HEAD
 import base64
 import requests
-from fastapi import HTTPException
-=======
-from app.services.azure_devops import AzureDevOpsClient, AzureDevOpsError
->>>>>>> 85fd8c9f4e83f397b8ecc3963dbd3da21d116081
+
+from app.services.langgraph_coordinator import build_graph
+from app.services.logger import log
 
 router = APIRouter()
 
+graph = build_graph()
 
 # -----------------------------
-# Existing fake endpoints stay
+# Fake project list (UI needs it)
 # -----------------------------
-FAKE_PROJECTS = [
-    {"id": 1, "name": "Demo Project"},
-    {"id": 2, "name": "Sample AutoDev Project"}
-]
-
 @router.get("/")
 def get_projects():
-    return FAKE_PROJECTS
+    return [
+        {"id": 1, "name": "Demo Project"},
+        {"id": 2, "name": "Sample AutoDev Project"}
+    ]
 
 
 # -----------------------------
-# NEW Azure DevOps ingestion
+# Azure DevOps config
 # -----------------------------
 class AzureProjectConfig(BaseModel):
     org: str
     project: str
     pat: str
 
-<<<<<<< HEAD
-from app.services.langgraph_coordinator import build_graph
-=======
 
+# -----------------------------
+# Azure DevOps work items (WIQL)
+# -----------------------------
 @router.post("/ado/work-items")
-def fetch_work_items(config: AzureProjectConfig):
-    client = AzureDevOpsClient(org=config.org, project=config.project, pat=config.pat)
+def get_ado_work_items(config: AzureProjectConfig):
+    print("🔥 ADO ENDPOINT HIT", config.org, config.project)
 
-    try:
-        work_items = client.get_work_items()
-    except AzureDevOpsError as exc:
-        raise HTTPException(status_code=502, detail=str(exc)) from exc
-
-    return [
-        {
-            "id": item["id"],
-            "type": item["fields"]["System.WorkItemType"],
-            "title": item["fields"]["System.Title"],
-            "description": item["fields"].get("System.Description", "")
-        }
-        for item in work_items
-    ]
-
-from app.services.coordinator import Coordinator
->>>>>>> 85fd8c9f4e83f397b8ecc3963dbd3da21d116081
-from app.services.logger import log
-
-graph = build_graph()
-
-@router.post("/run")
-def run_work_item(work_item: dict):
-    state = {
-        "story": work_item,
-        "project_name": work_item.get("project_name", "default"),
-        "feedback": [],
-        "refined_rules": {}
-    }
-
-    log("LangGraph: execution started")
-    graph.invoke(state)
-    log("LangGraph: execution completed")
-
-    return {"status": "completed"}
-@router.post("/ado/work-items")
-def get_ado_work_items(payload: dict):
-    print("🔥🔥🔥 ADO ENDPOINT HIT 🔥🔥🔥")
-    print("PAYLOAD:", payload)
-    org = payload["org"]
-    project = payload["project"]
-    pat = payload["pat"]
-
-    print("✅ ADO endpoint hit", org, project)
-
-    auth = base64.b64encode(f":{pat}".encode()).decode()
+    auth = base64.b64encode(f":{config.pat}".encode()).decode()
     headers = {
         "Authorization": f"Basic {auth}",
         "Content-Type": "application/json"
     }
 
-    wiql_url = f"https://dev.azure.com/{org}/{project}/_apis/wit/wiql?api-version=7.0"
+    wiql_url = (
+        f"https://dev.azure.com/{config.org}/{config.project}"
+        "/_apis/wit/wiql?api-version=7.0"
+    )
+
     query = {
         "query": """
         SELECT [System.Id], [System.Title], [System.WorkItemType]
@@ -110,7 +66,7 @@ def get_ado_work_items(payload: dict):
     ids = ",".join(str(w["id"]) for w in items)
 
     items_url = (
-        f"https://dev.azure.com/{org}/{project}"
+        f"https://dev.azure.com/{config.org}/{config.project}"
         f"/_apis/wit/workitems?ids={ids}&api-version=7.0"
     )
 
@@ -128,3 +84,28 @@ def get_ado_work_items(payload: dict):
         })
 
     return result
+
+
+# -----------------------------
+# Run agent pipeline
+# -----------------------------
+@router.post("/run")
+def run_work_item(payload: dict):
+    story = payload.get("story")
+
+    if not story or "title" not in story:
+        raise HTTPException(400, "story with title is required")
+
+    state = {
+        "story": story,                      
+        "project_name": payload.get("project_name", "default"),
+        "feedback": [],
+        "refined_rules": {}
+    }
+
+    log("LangGraph: execution started")
+    graph.invoke(state)
+    log("LangGraph: execution completed")
+
+    return {"status": "completed"}
+

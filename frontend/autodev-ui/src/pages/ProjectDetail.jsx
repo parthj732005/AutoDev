@@ -1,237 +1,235 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
+import safeFetch from "../utils/safeFetch";
 
 export default function ProjectDetail() {
-    const { id } = useParams();
+  const { id } = useParams(); // project_name
 
-    const [org, setOrg] = useState("");
-    const [project, setProject] = useState("");
-    const [pat, setPat] = useState("");
-    const [workItems, setWorkItems] = useState([]);
-    const [logs, setLogs] = useState([]);
+  const [org, setOrg] = useState("");
+  const [adoProject, setAdoProject] = useState("");
+  const [pat, setPat] = useState("");
 
-    const [files, setFiles] = useState({});
-    const [selectedFile, setSelectedFile] = useState(null);
+  const [workItems, setWorkItems] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-    const [running, setRunning] = useState(false);
+  const [logs, setLogs] = useState("");
+  const logSourceRef = useRef(null);
 
-    // ✅ DEBUG STATE
-    const [debug, setDebug] = useState("");
-
-    // ------------------------
-    // Fetch Azure DevOps work items
-    // ------------------------
-    async function fetchWorkItems() {
-        try {
-            setDebug("Fetching work items...");
-            console.log("FETCH /ado/work-items", { org, project });
-
-            const res = await fetch(
-                "http://127.0.0.1:8000/projects/ado/work-items",
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ org, project, pat })
-                }
-            );
-
-            setDebug(`Response status: ${res.status}`);
-
-            const data = await res.json();
-            console.log("WORK ITEMS RESPONSE:", data);
-
-            if (!Array.isArray(data)) {
-                setDebug("❌ Backend returned error. Check backend logs.");
-                setWorkItems([]);
-                return;
-            }
-
-            setDebug(`✅ Loaded ${data.length} work items`);
-            setWorkItems(data);
-        } catch (err) {
-            console.error(err);
-            setDebug("❌ Failed to fetch work items");
-        }
+  // -----------------------------
+  // Fetch Azure DevOps work items
+  // -----------------------------
+  const fetchWorkItems = async () => {
+    if (!org || !adoProject || !pat) {
+      alert("Please fill all Azure DevOps fields");
+      return;
     }
 
-    // ------------------------
-    // Fetch generated files
-    // ------------------------
-    async function fetchFiles() {
-        if (!project) return;
-
-        try {
-            const res = await fetch(`http://127.0.0.1:8000/files/${project}`);
-            const data = await res.json();
-            setFiles(data || {});
-        } catch {
-            setFiles({});
+    setLoading(true);
+    try {
+      const res = await safeFetch(
+        "http://localhost:8000/projects/ado/work-items",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ org, project: adoProject, pat }),
         }
+      );
+
+      const data = await res.json();
+      setWorkItems(data || []);
+    } catch {
+      alert("Failed to fetch work items");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // -----------------------------
+  // Run a selected work item
+  // -----------------------------
+  const runWorkItem = async (item) => {
+    const normalizedStory = {
+      title: item.title || item.name || item.type || "AutoDev Generated Task",
+      description: item.description || "No description provided by Azure DevOps.",
+    };
+
+    setLogs("");
+    startLogStream();
+
+    try {
+      await safeFetch("http://localhost:8000/projects/run", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          project_name: id,
+          story: normalizedStory,
+        }),
+      });
+    } catch {
+      alert("Failed to run work item");
+    }
+  };
+
+
+
+  // -----------------------------
+  // Live log streaming (SSE)
+  // -----------------------------
+  const startLogStream = () => {
+    if (logSourceRef.current) {
+      logSourceRef.current.close();
     }
 
-    // ------------------------
-    // SSE log streaming
-    // ------------------------
-    useEffect(() => {
-        const evtSource = new EventSource(
-            "http://127.0.0.1:8000/logs/stream"
-        );
+    const source = new EventSource("http://localhost:8000/logs/stream");
+    logSourceRef.current = source;
 
-        evtSource.onmessage = (event) => {
-            setLogs(prev => [...prev.slice(-200), event.data]);
-        };
+    source.onmessage = (event) => {
+      setLogs((prev) => prev + event.data + "\n");
+    };
 
-        evtSource.onerror = () => {
-            setLogs(prev => [...prev, "❌ Log stream disconnected"]);
-        };
+    source.onerror = () => {
+      source.close();
+      logSourceRef.current = null;
+    };
+  };
 
-        return () => evtSource.close();
-    }, []);
 
-    // Refresh files when project changes
-    useEffect(() => {
-        fetchFiles();
-    }, [project]);
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (logSourceRef.current) {
+        logSourceRef.current.close();
+      }
+    };
+  }, []);
 
-    return (
-        <div className="p-6 space-y-4">
-            <h2 className="text-xl font-bold">Project #{id}</h2>
+  return (
+    <div className="space-y-8">
 
-            {/* ✅ DEBUG INFO */}
-            {debug && (
-                <div className="p-2 bg-yellow-100 text-sm rounded">
-                    {debug}
-                </div>
-            )}
+      {/* ---------------- Azure DevOps Config ---------------- */}
+      <div
+        className="
+          bg-brand-panel dark:bg-cyber-panel
+          border border-brand-border dark:border-cyber-border
+          text-brand-text dark:text-cyber-text
+          p-5 rounded-xl space-y-3
+        "
+      >
+        <h3 className="font-semibold text-lg">
+          Azure DevOps Configuration
+        </h3>
 
-            {/* Azure DevOps Inputs */}
-            <input
-                className="border p-2 w-full"
-                placeholder="Azure Org"
-                value={org}
-                onChange={e => setOrg(e.target.value)}
-            />
+        <input
+          value={org}
+          onChange={(e) => setOrg(e.target.value)}
+          placeholder="Organization name"
+          className="
+            w-full p-2 rounded
+            bg-white dark:bg-cyber-bg
+            text-brand-text dark:text-cyber-text
+            border border-brand-border dark:border-cyber-border
+          "
+        />
 
-            <input
-                className="border p-2 w-full"
-                placeholder="Project Name"
-                value={project}
-                onChange={e => setProject(e.target.value)}
-            />
+        <input
+          value={adoProject}
+          onChange={(e) => setAdoProject(e.target.value)}
+          placeholder="Project name"
+          className="
+            w-full p-2 rounded
+            bg-white dark:bg-cyber-bg
+            text-brand-text dark:text-cyber-text
+            border border-brand-border dark:border-cyber-border
+          "
+        />
 
-            <input
-                className="border p-2 w-full"
-                type="password"
-                placeholder="Azure DevOps PAT"
-                value={pat}
-                onChange={e => setPat(e.target.value)}
-            />
+        <input
+          type="password"
+          value={pat}
+          onChange={(e) => setPat(e.target.value)}
+          placeholder="Personal Access Token (PAT)"
+          className="
+            w-full p-2 rounded
+            bg-white dark:bg-cyber-bg
+            text-brand-text dark:text-cyber-text
+            border border-brand-border dark:border-cyber-border
+          "
+        />
 
-            <button
-                className="bg-green-600 text-white px-4 py-2 rounded"
-                onClick={fetchWorkItems}
+        <button
+          onClick={fetchWorkItems}
+          disabled={loading}
+          className="px-4 py-2 bg-brand-primary text-white rounded"
+        >
+          {loading ? "Fetching…" : "Fetch Work Items"}
+        </button>
+      </div>
+
+      {/* ---------------- Work Items ---------------- */}
+      <div
+        className="
+          bg-brand-panel dark:bg-cyber-panel
+          border border-brand-border dark:border-cyber-border
+          text-brand-text dark:text-cyber-text
+          p-5 rounded-xl
+        "
+      >
+        <h3 className="font-semibold text-lg mb-3">Work Items</h3>
+
+        {workItems.length === 0 && (
+          <p className="text-sm text-brand-muted dark:text-gray-400">
+            No work items loaded
+          </p>
+        )}
+
+        <ul className="space-y-2 text-sm">
+          {workItems.map((item) => (
+            <li
+              key={item.id}
+              className="
+                flex justify-between items-center
+                border-b border-brand-border dark:border-cyber-border
+                pb-2
+              "
             >
-                Fetch Work Items
-            </button>
+              <div>
+                <p className="font-medium">{item.title}</p>
+                <p className="opacity-60">{item.type}</p>
+              </div>
 
-            {/* ✅ WORK ITEMS COUNT */}
-            <div className="text-sm text-gray-500">
-                Work items loaded: {workItems.length}
-            </div>
+              <button
+                onClick={() => runWorkItem(item)}
+                className="px-3 py-1 text-xs bg-green-600 text-white rounded"
+              >
+                Run
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-            {/* Work Items */}
-            <ul className="space-y-2">
-                {workItems.map(w => (
-                    <li key={w.id} className="border p-3 rounded space-y-2">
-                        <div className="font-semibold">{w.title}</div>
-                        <div className="text-sm text-gray-600">{w.type}</div>
+      {/* ---------------- Live Logs ---------------- */}
+      {logs && (
+        <div
+          className="
+            bg-black text-green-400
+            dark:bg-black
+            border border-brand-border dark:border-cyber-border
+            p-4 rounded-xl
+            font-mono text-xs
+            max-h-72 overflow-y-auto
+          "
+        >
+          <h3 className="text-sm font-semibold text-white mb-2">
+            Live Execution Logs
+          </h3>
 
-                        <button
-                            disabled={running}
-                            className={`mt-2 px-3 py-1 rounded text-white ${running
-                                    ? "bg-gray-400 cursor-not-allowed"
-                                    : "bg-blue-600"
-                                }`}
-                            onClick={async () => {
-                                setRunning(true);
-                                setDebug(`Running work item ${w.id}...`);
-
-                                await fetch(
-                                    "http://127.0.0.1:8000/projects/run",
-                                    {
-                                        method: "POST",
-                                        headers: {
-                                            "Content-Type": "application/json"
-                                        },
-                                        body: JSON.stringify({
-                                            id: w.id,
-                                            title: w.title,
-                                            description: w.description || "",
-                                            project_name: project
-                                        })
-                                    }
-                                );
-
-                                setTimeout(() => {
-                                    fetchFiles();
-                                    setRunning(false);
-                                    setDebug("✅ Execution finished");
-                                }, 1500);
-                            }}
-                        >
-                            {running ? "Running..." : "Run"}
-                        </button>
-                    </li>
-                ))}
-            </ul>
-
-            {/* ✅ FILE VIEWER */}
-            <div className="mt-6">
-                <h3 className="font-semibold">Generated Files</h3>
-
-                {Object.entries(files).map(([path, f]) => (
-                    <div
-                        key={f.id}
-                        className="cursor-pointer text-blue-500 hover:underline"
-                        onClick={async () => {
-                            const r = await fetch(
-                                `http://127.0.0.1:8000/files/content/${f.id}`
-                            );
-                            setSelectedFile(await r.json());
-                        }}
-                    >
-                        {path}
-                    </div>
-                ))}
-            </div>
-
-            {/* File content */}
-            {selectedFile && (
-                <pre className="bg-black text-green-400 p-3 mt-3 h-64 overflow-auto text-sm rounded">
-                    {selectedFile.content}
-                </pre>
-            )}
-
-            {/* ZIP download */}
-            {project && (
-                <a
-                    href={`http://127.0.0.1:8000/download/${project}`}
-                    className="inline-block mt-4 bg-purple-600 text-white px-4 py-2 rounded"
-                >
-                    Download ZIP
-                </a>
-            )}
-
-            {/* Live logs */}
-            <div className="mt-6 p-4 bg-black text-green-400 h-52 overflow-auto text-sm rounded">
-                <div className="font-bold text-white mb-2">
-                    Live Execution Logs
-                </div>
-
-                {logs.map((l, i) => (
-                    <div key={i}>{l}</div>
-                ))}
-            </div>
+          <pre className="whitespace-pre-wrap">
+            {logs}
+          </pre>
         </div>
-    );
+      )}
+
+    </div>
+  );
 }

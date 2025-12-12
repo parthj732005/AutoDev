@@ -22,3 +22,650 @@ Coordinator: Done
 [11:30:20] Coordinator: Using rule-based backend agent
 [11:30:20] Created ../generated_projects/ProjectTest/backend/routes\login.py
 [11:30:20] Coordinator: Done
+[00:16:22] LangGraph: execution started
+[00:36:19] LangGraph: execution started
+[00:52:54] LangGraph: execution started
+[01:22:04] LangGraph: execution started
+[01:29:35] LangGraph: execution started
+[01:29:46] LangGraph: execution completed
+[01:37:39] LangGraph: execution started
+[01:37:59] LangGraph: execution completed
+[11:08:35] LangGraph: execution started
+[11:08:54] LangGraph: execution completed
+[11:29:42] LangGraph: execution started
+[11:29:58] LangGraph: execution completed
+[11:32:35] LangGraph: execution started
+[11:32:58] LangGraph: execution completed
+[11:34:49] LangGraph: execution started
+[11:35:12] LangGraph: execution completed
+[11:36:36] LangGraph: execution started
+[11:36:52] LangGraph: execution completed
+[08:37:19] LangGraph: execution started
+[08:37:38] LangGraph: execution completed
+[08:59:29] LangGraph: execution started
+[08:59:29] Coordinator: Starting task decomposition
+[08:59:29] Story → User login functionality
+[08:59:29] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[08:59:29] Coordinator: Detected patterns → ['AUTH', 'ENTITY']
+[08:59:29] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_mpi0xqok
+[08:59:29] Backend Agent: Generating backend API...
+[08:59:29] Frontend Agent: Generating UI components...
+[08:59:29] Database Agent: Generating SQL schema...
+[08:59:32] Database Agent: Schema generation complete
+[08:59:37] Frontend Agent: Finished UI generation
+[08:59:37] Backend Agent: Finished backend API generation
+[08:59:37] Test Agent: Generating test suite...
+[08:59:43] Test Agent: Test files created
+[08:59:43] Persistence: Saving generated files to project folder...
+[08:59:43] Persistence: Files saved successfully
+[08:59:43] LangGraph: execution completed
+[09:00:16] LangGraph: execution started
+[09:00:16] Coordinator: Starting task decomposition
+[09:00:16] Story → User login functionality
+[09:00:16] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[09:00:16] Coordinator: Detected patterns → ['AUTH', 'ENTITY']
+[09:00:16] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_1v7u_j5m
+[09:00:16] Backend Agent: Generating backend API...
+[09:00:16] Database Agent: Generating SQL schema...
+[09:00:16] Frontend Agent: Generating UI components...
+[09:00:17] Database Agent: Schema generation complete
+[09:00:23] Frontend Agent: Finished UI generation
+[09:00:24] Backend Agent: Finished backend API generation
+[09:00:24] Test Agent: Generating test suite...
+[09:00:30] Test Agent: Test files created
+[09:00:30] Persistence: Saving generated files to project folder...
+[09:00:30] Persistence: Files saved successfully
+[09:00:30] LangGraph: execution completed
+[09:05:10] LangGraph: execution started
+[09:05:10] Coordinator: Starting task decomposition
+[09:05:10] Story → User login functionality
+[09:05:10] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[09:05:10] Coordinator: Detected patterns → ['AUTH', 'ENTITY']
+[09:05:10] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_drsxs_ur
+[09:05:10] Backend Agent: Generating backend API...
+[09:05:10] Frontend Agent: Generating UI components...
+[09:05:13] Database Agent: Schema generation complete
+[09:05:19] Frontend Agent: Finished UI generation
+[09:05:22] Backend Agent: Finished backend API generation
+[09:05:22] Test Agent: Generating test suite...
+[09:05:27] Test Agent: Test files created
+[09:05:27] Persistence: Saving generated files to project folder...
+[09:05:27] Persistence: Files saved successfully
+[09:05:27] LangGraph: execution completed
+[09:06:12] LangGraph: execution started
+[09:06:12] Coordinator: Starting task decomposition
+[09:06:12] Story → User login functionality
+[09:06:12] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[09:06:12] Coordinator: Detected patterns → ['AUTH', 'ENTITY']
+[09:06:12] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_9zu27txu
+[09:06:12] Backend Agent: Generating backend API...
+[09:06:12] Database Agent: Generating SQL schema...
+[09:06:12] Frontend Agent: Generating UI components...
+[09:06:15] Database Agent: Schema generation complete
+[09:06:19] Backend Agent: Finished backend API generation
+[09:06:23] Frontend Agent: Finished UI generation
+[09:06:23] Test Agent: Generating test suite...
+[09:06:29] Test Agent: Test files created
+[09:06:29] Persistence: Saving generated files to project folder...
+[09:06:29] Persistence: Files saved successfully
+[09:06:29] LangGraph: execution completed
+[09:22:12] LangGraph: execution started
+[09:22:12] Coordinator: Starting task decomposition
+[09:22:12] Story → User login functionality
+[09:22:12] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[09:22:12] Coordinator: Detected patterns → ['AUTH', 'ENTITY']
+[09:22:12] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_c50q18fe
+[09:22:12] Backend Agent: Generating backend API...
+[09:22:12] Database Agent: Generating SQL schema...
+[09:22:12] Frontend Agent: Generating UI components...
+[09:22:15] Database Agent: Schema generation complete
+[09:22:21] Frontend Agent: Finished UI generation
+[09:22:24] Backend Agent: Finished backend API generation
+[09:22:24] Test Agent: Generating test suite...
+[09:22:31] Test Agent: Test files created
+[09:22:31] Persistence: Saving generated files to project folder...
+[09:22:31] Persistence: Files saved successfully
+[09:22:31] LangGraph: execution completed
+[09:23:20] LangGraph: execution started
+[09:23:20] Coordinator: Starting task decomposition
+[09:23:20] Story → User login functionality
+[09:23:20] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[09:23:20] Coordinator: Detected patterns → ['AUTH', 'ENTITY']
+[09:23:20] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_f9ri_vpc
+[09:23:20] Backend Agent: Generating backend API...
+[09:23:20] Database Agent: Generating SQL schema...
+[09:23:20] Frontend Agent: Generating UI components...
+[09:23:23] Database Agent: Schema generation complete
+[09:23:30] Frontend Agent: Finished UI generation
+[09:23:31] Backend Agent: Finished backend API generation
+[09:23:31] Test Agent: Generating test suite...
+[09:23:39] Test Agent: Test files created
+[09:23:40] Persistence: Saving generated files to project folder...
+[09:23:40] Persistence: Files saved successfully
+[09:23:40] LangGraph: execution completed
+[09:25:56] LangGraph: execution started
+[09:25:56] Coordinator: Starting task decomposition
+[09:25:56] Story → User login functionality
+[09:25:56] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[09:25:56] Coordinator: Detected patterns → ['AUTH', 'ENTITY']
+[09:25:56] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_djexubna
+[09:25:56] Backend Agent: Generating backend API...
+[09:25:56] Database Agent: Generating SQL schema...
+[09:25:56] Frontend Agent: Generating UI components...
+[09:25:58] Database Agent: Schema generation complete
+[09:26:05] Backend Agent: Finished backend API generation
+[09:26:06] Frontend Agent: Finished UI generation
+[09:26:06] Test Agent: Generating test suite...
+[09:26:12] Test Agent: Test files created
+[09:26:12] Persistence: Saving generated files to project folder...
+[09:26:12] Persistence: Files saved successfully
+[09:26:12] LangGraph: execution completed
+[09:43:00] LangGraph: execution started
+[09:43:00] Coordinator: Starting task decomposition
+[09:43:00] Story → User login functionality
+[09:43:00] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[09:43:00] Coordinator: Detected patterns → ['AUTH', 'ENTITY']
+[09:43:00] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_q1t6ev0u
+[09:43:00] Backend Agent: Generating backend API...
+[09:43:00] Database Agent: Generating SQL schema...
+[09:43:00] Frontend Agent: Generating UI components...
+[09:43:04] Database Agent: Schema generation complete
+[09:43:09] Frontend Agent: Finished UI generation
+[09:43:12] Backend Agent: Finished backend API generation
+[09:43:12] Test Agent: Generating test suite...
+[09:43:17] Test Agent: Test files created
+[09:43:17] Persistence: Saving generated files to project folder...
+[09:43:17] Persistence: Files saved successfully
+[09:43:17] LangGraph: execution completed
+[09:46:57] LangGraph: execution started
+[09:46:57] Coordinator: Starting task decomposition
+[09:46:57] Story → User login functionality
+[09:46:57] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[09:46:57] Coordinator: Detected patterns → ['AUTH', 'ENTITY']
+[09:46:57] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_qi091jvd
+[09:46:57] Backend Agent: Generating backend API...
+[09:46:57] Database Agent: Generating SQL schema...
+[09:46:57] Frontend Agent: Generating UI components...
+[09:47:00] Database Agent: Schema generation complete
+[09:47:05] Backend Agent: Finished backend API generation
+[09:47:05] Frontend Agent: Finished UI generation
+[09:47:05] Test Agent: Generating test suite...
+[09:47:10] Test Agent: Test files created
+[09:47:10] Persistence: Saving generated files to project folder...
+[09:47:10] Persistence: Files saved successfully
+[09:47:10] LangGraph: execution completed
+[18:02:08] LangGraph: execution started
+[18:02:08] Coordinator: Starting task decomposition
+[18:02:08] Story → 
+[18:02:08] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[18:02:08] Coordinator: Detected patterns → []
+[18:02:08] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_e7o19rxm
+[18:02:08] Backend Agent: Generating backend API...
+[18:02:08] Database Agent: Generating SQL schema...
+[18:02:08] ❌ Backend Agent ERROR: 'title'
+[18:02:08] Frontend Agent: Generating UI components...
+[18:02:08] ❌ Frontend Agent ERROR: 'title'
+[18:02:13] Database Agent: Schema generation complete
+[18:02:13] Test Agent: Generating test suite...
+[18:02:20] Test Agent: Test files created
+[18:02:20] Persistence: Saving generated files to project folder...
+[18:02:21] Persistence: Files saved successfully
+[18:02:21] LangGraph: execution completed
+[18:09:33] LangGraph: execution started
+[18:09:33] Coordinator: Starting task decomposition
+[18:09:33] Story → 
+[18:09:33] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[18:09:33] Coordinator: Detected patterns → []
+[18:09:33] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_957dssot
+[18:09:33] Backend Agent: Generating backend API...
+[18:09:33] Database Agent: Generating SQL schema...
+[18:09:33] ❌ Backend Agent ERROR: 'title'
+[18:09:33] Frontend Agent: Generating UI components...
+[18:09:33] ❌ Frontend Agent ERROR: 'title'
+[18:09:34] Database Agent: Schema generation complete
+[18:09:34] Test Agent: Generating test suite...
+[18:09:39] Test Agent: Test files created
+[18:09:39] Persistence: Saving generated files to project folder...
+[18:09:40] Persistence: Files saved successfully
+[18:09:40] LangGraph: execution completed
+[18:11:40] LangGraph: execution started
+[18:11:40] Coordinator: Starting task decomposition
+[18:11:40] Story → 
+[18:11:40] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[18:11:40] Coordinator: Detected patterns → []
+[18:11:40] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_ctt_orii
+[18:11:40] Backend Agent: Generating backend API...
+[18:11:40] Database Agent: Generating SQL schema...
+[18:11:40] Frontend Agent: Generating UI components...
+[18:11:40] ❌ Backend Agent ERROR: 'title'
+[18:11:40] ❌ Frontend Agent ERROR: 'title'
+[18:11:42] Database Agent: Schema generation complete
+[18:11:42] Test Agent: Generating test suite...
+[18:11:49] Test Agent: Test files created
+[18:11:49] Persistence: Saving generated files to project folder...
+[18:11:49] Persistence: Files saved successfully
+[18:11:49] LangGraph: execution completed
+[18:15:42] LangGraph: execution started
+[18:15:42] Coordinator: Starting task decomposition
+[18:15:42] Story → 
+[18:15:42] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[18:15:42] Coordinator: Detected patterns → []
+[18:15:42] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_o6sw17h4
+[18:15:42] Backend Agent: Generating backend API...
+[18:15:42] Database Agent: Generating SQL schema...
+[18:15:42] ❌ Backend Agent ERROR: 'title'
+[18:15:42] Frontend Agent: Generating UI components...
+[18:15:42] ❌ Frontend Agent ERROR: 'title'
+[18:15:44] Database Agent: Schema generation complete
+[18:15:44] Test Agent: Generating test suite...
+[18:15:51] Test Agent: Test files created
+[18:15:51] Persistence: Saving generated files to project folder...
+[18:15:51] Persistence: Files saved successfully
+[18:15:51] LangGraph: execution completed
+[18:17:24] LangGraph: execution started
+[18:17:24] Coordinator: Starting task decomposition
+[18:17:24] Story → 
+[18:17:24] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[18:17:24] Coordinator: Detected patterns → []
+[18:17:24] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_pg6wf3za
+[18:17:24] Backend Agent: Generating backend API...
+[18:17:24] Database Agent: Generating SQL schema...
+[18:17:24] Frontend Agent: Generating UI components...
+[18:17:24] ❌ Backend Agent ERROR: 'title'
+[18:17:24] ❌ Frontend Agent ERROR: 'title'
+[18:17:25] Database Agent: Schema generation complete
+[18:17:25] Test Agent: Generating test suite...
+[18:17:31] Test Agent: Test files created
+[18:17:31] Persistence: Saving generated files to project folder...
+[18:17:31] Persistence: Files saved successfully
+[18:17:31] LangGraph: execution completed
+[18:17:54] LangGraph: execution started
+[18:17:54] Coordinator: Starting task decomposition
+[18:17:54] Story → 
+[18:17:54] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[18:17:54] Coordinator: Detected patterns → []
+[18:17:54] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_se_kzjav
+[18:17:54] Backend Agent: Generating backend API...
+[18:17:54] ❌ Backend Agent ERROR: 'title'
+[18:17:54] Database Agent: Generating SQL schema...
+[18:17:54] Frontend Agent: Generating UI components...
+[18:17:54] ❌ Frontend Agent ERROR: 'title'
+[18:17:56] Database Agent: Schema generation complete
+[18:17:56] Test Agent: Generating test suite...
+[18:18:01] Test Agent: Test files created
+[18:18:01] Persistence: Saving generated files to project folder...
+[18:18:01] Persistence: Files saved successfully
+[18:18:01] LangGraph: execution completed
+[18:19:45] LangGraph: execution started
+[18:19:45] Coordinator: Starting task decomposition
+[18:19:45] Story → 
+[18:19:45] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[18:19:45] Coordinator: Detected patterns → []
+[18:19:45] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_ineiz38n
+[18:19:45] Backend Agent: Generating backend API...
+[18:19:45] Database Agent: Generating SQL schema...
+[18:19:45] ❌ Backend Agent ERROR: 'title'
+[18:19:45] Frontend Agent: Generating UI components...
+[18:19:45] ❌ Frontend Agent ERROR: 'title'
+[18:19:47] Database Agent: Schema generation complete
+[18:19:47] Test Agent: Generating test suite...
+[18:19:53] Test Agent: Test files created
+[18:19:53] Persistence: Saving generated files to project folder...
+[18:19:53] Persistence: Files saved successfully
+[18:19:53] LangGraph: execution completed
+[18:24:16] LangGraph: execution started
+[18:24:16] Coordinator: Starting task decomposition
+[18:24:16] Story → 
+[18:24:16] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[18:24:16] Coordinator: Detected patterns → []
+[18:24:16] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_tqw19piw
+[18:24:16] Backend Agent: Generating backend API...
+[18:24:16] Database Agent: Generating SQL schema...
+[18:24:16] ❌ Backend Agent ERROR: 'title'
+[18:24:16] Frontend Agent: Generating UI components...
+[18:24:17] ❌ Frontend Agent ERROR: 'title'
+[18:24:19] Database Agent: Schema generation complete
+[18:24:19] Test Agent: Generating test suite...
+[18:24:27] Test Agent: Test files created
+[18:24:27] Persistence: Saving generated files to project folder...
+[18:24:27] Persistence: Files saved successfully
+[18:24:27] LangGraph: execution completed
+[18:28:03] LangGraph: execution started
+[18:28:03] Coordinator: Starting task decomposition
+[18:28:03] Story → User login functionality
+[18:28:03] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[18:28:03] Coordinator: Detected patterns → ['AUTH', 'ENTITY']
+[18:28:03] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev__oc41fth
+[18:28:03] Backend Agent: Generating backend API...
+[18:28:03] Database Agent: Generating SQL schema...
+[18:28:03] Frontend Agent: Generating UI components...
+[18:28:06] Database Agent: Schema generation complete
+[18:28:11] Frontend Agent: Finished UI generation
+[18:28:12] Backend Agent: Finished backend API generation
+[18:28:12] Test Agent: Generating test suite...
+[18:28:17] Test Agent: Test files created
+[18:28:17] Persistence: Saving generated files to project folder...
+[18:28:17] Persistence: Files saved successfully
+[18:28:17] LangGraph: execution completed
+[18:28:56] LangGraph: execution started
+[18:28:56] Coordinator: Starting task decomposition
+[18:28:56] Story → User login functionality
+[18:28:56] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[18:28:56] Coordinator: Detected patterns → ['AUTH', 'ENTITY']
+[18:28:56] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_lc91_of5
+[18:28:57] Backend Agent: Generating backend API...
+[18:28:57] Database Agent: Generating SQL schema...
+[18:28:57] Frontend Agent: Generating UI components...
+[18:28:58] Database Agent: Schema generation complete
+[18:29:04] Frontend Agent: Finished UI generation
+[18:29:04] Backend Agent: Finished backend API generation
+[18:29:04] Test Agent: Generating test suite...
+[18:29:13] Test Agent: Test files created
+[18:29:13] Persistence: Saving generated files to project folder...
+[18:29:13] Persistence: Files saved successfully
+[18:29:13] LangGraph: execution completed
+[18:39:48] LangGraph: execution started
+[18:39:48] Coordinator: Starting task decomposition
+[18:39:48] Story → User Authentication API
+[18:39:48] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[18:39:48] Coordinator: Detected patterns → ['AUTH', 'ENTITY', 'API']
+[18:39:48] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_ecv1au8s
+[18:39:48] Backend Agent: Generating backend API...
+[18:39:48] Database Agent: Generating SQL schema...
+[18:39:48] Frontend Agent: Generating UI components...
+[18:39:51] Database Agent: Schema generation complete
+[18:39:56] Frontend Agent: Finished UI generation
+[18:39:57] Backend Agent: Finished backend API generation
+[18:39:57] Test Agent: Generating test suite...
+[18:40:02] Test Agent: Test files created
+[18:40:02] Persistence: Saving generated files to project folder...
+[18:40:03] Persistence: Files saved successfully
+[18:40:03] LangGraph: execution completed
+[18:40:52] LangGraph: execution started
+[18:40:52] Coordinator: Starting task decomposition
+[18:40:52] Story → User Authentication API
+[18:40:52] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[18:40:52] Coordinator: Detected patterns → ['AUTH', 'ENTITY', 'API']
+[18:40:52] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_qmasx2hr
+[18:40:52] Backend Agent: Generating backend API...
+[18:40:52] Database Agent: Generating SQL schema...
+[18:40:52] Frontend Agent: Generating UI components...
+[18:40:55] Database Agent: Schema generation complete
+[18:41:00] Frontend Agent: Finished UI generation
+[18:41:01] Backend Agent: Finished backend API generation
+[18:41:01] Test Agent: Generating test suite...
+[18:41:06] Test Agent: Test files created
+[18:41:06] Persistence: Saving generated files to project folder...
+[18:41:06] Persistence: Files saved successfully
+[18:41:06] LangGraph: execution completed
+[18:41:13] LangGraph: execution started
+[18:41:13] Coordinator: Starting task decomposition
+[18:41:13] Story → Login UI Integration
+[18:41:13] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[18:41:13] Coordinator: Detected patterns → ['AUTH', 'ENTITY', 'UI']
+[18:41:13] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_p60lxae7
+[18:41:13] Backend Agent: Generating backend API...
+[18:41:13] Database Agent: Generating SQL schema...
+[18:41:13] Frontend Agent: Generating UI components...
+[18:41:14] Database Agent: Schema generation complete
+[18:41:20] Frontend Agent: Finished UI generation
+[18:41:21] Backend Agent: Finished backend API generation
+[18:41:21] Test Agent: Generating test suite...
+[18:41:27] Test Agent: Test files created
+[18:41:27] Persistence: Saving generated files to project folder...
+[18:41:27] Persistence: Files saved successfully
+[18:41:27] LangGraph: execution completed
+[19:00:31] LangGraph: execution started
+[19:00:31] Coordinator: Starting task decomposition
+[19:00:31] Story → User Authentication API
+[19:00:31] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[19:00:31] Coordinator: Detected patterns → ['AUTH', 'ENTITY', 'API']
+[19:00:31] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_5ftdpvfu
+[19:00:31] Backend Agent: Generating backend API...
+[19:00:31] Frontend Agent: Generating UI components...
+[19:00:37] Database Agent: Schema generation complete
+[19:00:44] Frontend Agent: Finished UI generation
+[19:01:23] Backend Agent: Finished backend API generation
+[19:01:23] Test Agent: Generating test suite...
+[19:01:31] Test Agent: Test files created
+[19:01:31] Persistence: Saving generated files to project folder...
+[19:01:32] Persistence: Files saved successfully
+[19:01:32] LangGraph: execution completed
+[19:03:51] LangGraph: execution started
+[19:03:51] Coordinator: Starting task decomposition
+[19:03:51] Story → User Authentication API
+[19:03:51] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[19:03:51] Coordinator: Detected patterns → ['AUTH', 'ENTITY', 'API']
+[19:03:51] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_jncy_cyx
+[19:03:51] Backend Agent: Generating backend API...
+[19:03:51] Database Agent: Generating SQL schema...
+[19:03:51] Frontend Agent: Generating UI components...
+[19:03:53] Database Agent: Schema generation complete
+[19:03:59] Frontend Agent: Finished UI generation
+[19:04:05] Backend Agent: Finished backend API generation
+[19:04:05] Test Agent: Generating test suite...
+[19:04:11] Test Agent: Test files created
+[19:04:11] Persistence: Saving generated files to project folder...
+[19:04:11] Persistence: Files saved successfully
+[19:04:11] LangGraph: execution completed
+[19:04:22] LangGraph: execution started
+[19:04:22] Coordinator: Starting task decomposition
+[19:04:22] Story → Login UI Integration
+[19:04:22] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[19:04:22] Coordinator: Detected patterns → ['AUTH', 'ENTITY', 'UI']
+[19:04:22] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_9i27du0o
+[19:04:22] Backend Agent: Generating backend API...
+[19:04:22] Database Agent: Generating SQL schema...
+[19:04:22] Frontend Agent: Generating UI components...
+[19:04:24] Database Agent: Schema generation complete
+[19:04:30] Frontend Agent: Finished UI generation
+[19:04:36] Backend Agent: Finished backend API generation
+[19:04:36] Test Agent: Generating test suite...
+[19:04:42] Test Agent: Test files created
+[19:04:42] Persistence: Saving generated files to project folder...
+[19:04:42] Persistence: Files saved successfully
+[19:04:42] LangGraph: execution completed
+[19:10:38] LangGraph: execution started
+[19:10:38] Coordinator: Starting task decomposition
+[19:10:38] Story → User Authentication API
+[19:10:38] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[19:10:38] Coordinator: Detected patterns → ['AUTH', 'ENTITY', 'API']
+[19:10:38] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_w6xsdepr
+[19:10:38] Backend Agent: Generating backend API...
+[19:10:38] Database Agent: Generating SQL schema...
+[19:10:38] Frontend Agent: Generating UI components...
+[19:10:40] Database Agent: Schema generation complete
+[19:10:45] Frontend Agent: Finished UI generation
+[19:10:51] Backend Agent: Finished backend API generation
+[19:10:51] Test Agent: Generating test suite...
+[19:10:57] Test Agent: Test files created
+[19:10:57] Persistence: Saving generated files to project folder...
+[19:10:57] Persistence: Files saved successfully
+[19:10:57] LangGraph: execution completed
+[19:13:12] LangGraph: execution started
+[19:13:12] Coordinator: Starting task decomposition
+[19:13:12] Story → User Authentication API
+[19:13:12] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[19:13:12] Coordinator: Detected patterns → ['AUTH', 'ENTITY', 'API']
+[19:13:12] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_kadk0jb5
+[19:13:12] Backend Agent: Generating backend API...
+[19:13:12] Database Agent: Generating SQL schema...
+[19:13:12] Frontend Agent: Generating UI components...
+[19:13:14] Database Agent: Schema generation complete
+[19:13:20] Frontend Agent: Finished UI generation
+[19:13:25] Backend Agent: Finished backend API generation
+[19:13:25] Test Agent: Generating test suite...
+[19:13:32] Test Agent: Test files created
+[19:13:32] Persistence: Saving generated files to project folder...
+[19:13:32] Persistence: Files saved successfully
+[19:13:32] LangGraph: execution completed
+[19:20:03] LangGraph: execution started
+[19:20:03] Coordinator: Starting task decomposition
+[19:20:03] Story → Login UI Integration
+[19:20:03] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[19:20:03] Coordinator: Detected patterns → ['AUTH', 'ENTITY', 'UI']
+[19:20:03] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_cv0cr1a3
+[19:20:03] Backend Agent: Generating backend API...
+[19:20:03] Database Agent: Generating SQL schema...
+[19:20:03] Frontend Agent: Generating UI components...
+[19:20:05] Database Agent: Schema generation complete
+[19:20:11] Frontend Agent: Finished UI generation
+[19:20:18] Backend Agent: Finished backend API generation
+[19:20:18] Test Agent: Generating test suite...
+[19:20:25] Test Agent: Test files created
+[19:20:25] Persistence: Saving generated files to project folder...
+[19:20:26] Persistence: Files saved successfully
+[19:20:26] LangGraph: execution completed
+[19:20:34] LangGraph: execution started
+[19:20:34] Coordinator: Starting task decomposition
+[19:20:34] Story → User Authentication API
+[19:20:34] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[19:20:34] Coordinator: Detected patterns → ['AUTH', 'ENTITY', 'API']
+[19:20:34] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev__qs7fj3w
+[19:20:34] Backend Agent: Generating backend API...
+[19:20:34] Database Agent: Generating SQL schema...
+[19:20:34] Frontend Agent: Generating UI components...
+[19:20:36] Database Agent: Schema generation complete
+[19:20:51] Frontend Agent: Finished UI generation
+[19:20:53] Backend Agent: Finished backend API generation
+[19:20:53] Test Agent: Generating test suite...
+[19:21:00] Test Agent: Test files created
+[19:21:00] Persistence: Saving generated files to project folder...
+[19:21:00] Persistence: Files saved successfully
+[19:21:00] LangGraph: execution completed
+[19:22:14] LangGraph: execution started
+[19:22:14] Coordinator: Starting task decomposition
+[19:22:14] Story → Login UI Integration
+[19:22:14] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[19:22:14] Coordinator: Detected patterns → ['AUTH', 'ENTITY', 'UI']
+[19:22:14] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_ztm8o71a
+[19:22:14] Backend Agent: Generating backend API...
+[19:22:14] Database Agent: Generating SQL schema...
+[19:22:14] Frontend Agent: Generating UI components...
+[19:22:19] Database Agent: Schema generation complete
+[19:22:24] Frontend Agent: Finished UI generation
+[19:22:27] Backend Agent: Finished backend API generation
+[19:22:27] Test Agent: Generating test suite...
+[19:22:36] Test Agent: Test files created
+[19:22:36] Persistence: Saving generated files to project folder...
+[19:22:36] Persistence: Files saved successfully
+[19:22:36] LangGraph: execution completed
+[19:24:36] LangGraph: execution started
+[19:24:36] Coordinator: Starting task decomposition
+[19:24:36] Story → User Authentication API
+[19:24:36] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[19:24:36] Coordinator: Detected patterns → ['AUTH', 'ENTITY', 'API']
+[19:24:36] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_ml0lksnx
+[19:24:36] Backend Agent: Generating backend API...
+[19:24:36] Database Agent: Generating SQL schema...
+[19:24:36] Frontend Agent: Generating UI components...
+[19:24:38] Database Agent: Schema generation complete
+[19:24:43] Frontend Agent: Finished UI generation
+[19:24:51] Backend Agent: Finished backend API generation
+[19:24:51] Test Agent: Generating test suite...
+[19:24:57] Test Agent: Test files created
+[19:24:57] Persistence: Saving generated files to project folder...
+[19:24:57] Persistence: Files saved successfully
+[19:24:57] LangGraph: execution completed
+[20:49:17] LangGraph: execution started
+[20:49:17] Coordinator: Starting task decomposition
+[20:49:17] Story → User Authentication API
+[20:49:17] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[20:49:17] Coordinator: Detected patterns → ['AUTH', 'ENTITY', 'API']
+[20:49:17] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_dgi_de7n
+[20:49:17] Backend Agent: Generating backend API...
+[20:49:17] Database Agent: Generating SQL schema...
+[20:49:17] Frontend Agent: Generating UI components...
+[20:49:21] Database Agent: Schema generation complete
+[20:49:27] Frontend Agent: Finished UI generation
+[20:49:34] Backend Agent: Finished backend API generation
+[20:49:34] Test Agent: Generating test suite...
+[20:49:39] Test Agent: Test files created
+[20:49:40] Persistence: Saving generated files to project folder...
+[20:49:40] Persistence: Files saved successfully
+[20:49:40] LangGraph: execution completed
+[21:01:43] LangGraph: execution started
+[21:01:43] Coordinator: Starting task decomposition
+[21:01:43] Story → Login UI Integration
+[21:01:43] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[21:01:43] Coordinator: Detected patterns → ['AUTH', 'ENTITY', 'UI']
+[21:01:43] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_84qdyc8q
+[21:01:43] Backend Agent: Generating backend API...
+[21:01:43] Database Agent: Generating SQL schema...
+[21:01:43] Frontend Agent: Generating UI components...
+[21:01:44] Database Agent: Schema generation complete
+[21:01:51] Frontend Agent: Finished UI generation
+[21:01:57] Backend Agent: Finished backend API generation
+[21:01:57] Test Agent: Generating test suite...
+[21:02:03] Test Agent: Test files created
+[21:02:03] Persistence: Saving generated files to project folder...
+[21:02:03] Persistence: Files saved successfully
+[21:02:03] LangGraph: execution completed
+[21:03:23] LangGraph: execution started
+[21:03:23] Coordinator: Starting task decomposition
+[21:03:23] Story → User Authentication API
+[21:03:23] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[21:03:23] Coordinator: Detected patterns → ['AUTH', 'ENTITY', 'API']
+[21:03:23] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_57hwcswi
+[21:03:23] Backend Agent: Generating backend API...
+[21:03:23] Frontend Agent: Generating UI components...
+[21:03:23] Database Agent: Generating SQL schema...
+[21:03:26] Database Agent: Schema generation complete
+[21:03:33] Frontend Agent: Finished UI generation
+[21:03:39] Backend Agent: Finished backend API generation
+[21:03:39] Test Agent: Generating test suite...
+[21:03:47] Test Agent: Test files created
+[21:03:47] Persistence: Saving generated files to project folder...
+[21:03:47] Persistence: Files saved successfully
+[21:03:47] LangGraph: execution completed
+[21:09:44] LangGraph: execution started
+[21:09:44] Coordinator: Starting task decomposition
+[21:09:44] Story → Login UI Integration
+[21:09:44] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[21:09:44] Coordinator: Detected patterns → ['AUTH', 'ENTITY', 'UI']
+[21:09:44] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_bfgiy4oz
+[21:09:44] Backend Agent: Generating backend API...
+[21:09:44] Database Agent: Generating SQL schema...
+[21:09:44] Frontend Agent: Generating UI components...
+[21:09:46] Database Agent: Schema generation complete
+[21:09:54] Frontend Agent: Finished UI generation
+[21:09:56] Backend Agent: Finished backend API generation
+[21:09:56] Test Agent: Generating test suite...
+[21:10:01] Test Agent: Test files created
+[21:10:01] Persistence: Saving generated files to project folder...
+[21:10:01] Persistence: Files saved successfully
+[21:10:01] LangGraph: execution completed
+[21:11:19] LangGraph: execution started
+[21:11:19] Coordinator: Starting task decomposition
+[21:11:19] Story → Login UI Integration
+[21:11:19] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[21:11:19] Coordinator: Detected patterns → ['AUTH', 'ENTITY', 'UI']
+[21:11:19] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_rubt7lr8
+[21:11:19] Backend Agent: Generating backend API...
+[21:11:19] Database Agent: Generating SQL schema...
+[21:11:19] Frontend Agent: Generating UI components...
+[21:11:21] Database Agent: Schema generation complete
+[21:11:29] Frontend Agent: Finished UI generation
+[21:11:37] Backend Agent: Finished backend API generation
+[21:11:37] Test Agent: Generating test suite...
+[21:11:43] Test Agent: Test files created
+[21:11:43] Persistence: Saving generated files to project folder...
+[21:11:43] Persistence: Files saved successfully
+[21:11:43] LangGraph: execution completed
+[21:11:45] LangGraph: execution started
+[21:11:45] Coordinator: Starting task decomposition
+[21:11:45] Story → User Authentication API
+[21:11:45] Coordinator: Detected tasks → ['BACKEND', 'FRONTEND', 'DATABASE']
+[21:11:45] Coordinator: Detected patterns → ['AUTH', 'ENTITY', 'API']
+[21:11:45] Workspace created → C:\Users\HP\AppData\Local\Temp\autodev_p71vc6_j
+[21:11:45] Backend Agent: Generating backend API...
+[21:11:45] Database Agent: Generating SQL schema...
+[21:11:45] Frontend Agent: Generating UI components...
+[21:11:47] Database Agent: Schema generation complete
+[21:11:56] Frontend Agent: Finished UI generation
+[21:11:59] Backend Agent: Finished backend API generation
+[21:11:59] Test Agent: Generating test suite...
+[21:12:07] Test Agent: Test files created
+[21:12:07] Persistence: Saving generated files to project folder...
+[21:12:07] Persistence: Files saved successfully
+[21:12:07] LangGraph: execution completed

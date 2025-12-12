@@ -17,7 +17,7 @@ Rules:
 - No npm installs assumed
 """
 
-        code = call_llm(prompt)
+        code = call_llm(prompt)["content"]
 
         base = os.path.join(base_path, "frontend")
         os.makedirs(base, exist_ok=True)

@@ -1,14 +1,14 @@
-import queue
-import time
+import os
+from datetime import datetime
 
-log_queue = queue.Queue()
+LOG_FILE = "app/logs/run.log"
+
+os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)
 
 def log(message: str):
-    timestamped = f"[{time.strftime('%H:%M:%S')}] {message}"
+    timestamp = datetime.now().strftime("%H:%M:%S")
+    entry = f"[{timestamp}] {message}\n"
+    print(entry.strip())  
 
-    # write to file (safe for demo)
-    with open("app/logs/run.log", "a") as f:
-        f.write(timestamped + "\n")
-
-    # push to live stream
-    log_queue.put(timestamped)
+    with open(LOG_FILE, "a", encoding="utf-8") as f:
+        f.write(entry)

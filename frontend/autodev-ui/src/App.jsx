@@ -1,20 +1,44 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
-import Home from "./pages/Home.jsx";
+import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
-
-function App() {
+import AppLayout from "./layouts/AppLayout";
+export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Public route */}
         <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/projects/:id" element={<ProjectDetail />} />
+
+        {/* Protected routes */}
+        <Route
+          path="/home"
+          element={
+            <AppLayout>
+              <Home />
+            </AppLayout>
+          }
+        />
+
+        <Route
+          path="/projects"
+          element={
+            <AppLayout>
+              <Projects />
+            </AppLayout>
+          }
+        />
+
+        <Route
+          path="/projects/:id"
+          element={
+            <AppLayout>
+              <ProjectDetail />
+            </AppLayout>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
 }
-
-export default App;

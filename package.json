@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@propelauth/react": "^2.1.0",
+    "firebase": "^12.6.0",
+    "framer-motion": "^12.23.24",
+    "react-syntax-highlighter": "^16.1.0"
+  }
+}
