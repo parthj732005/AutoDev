@@ -1,165 +1,268 @@
-#AutoDev: AI-Powered Full-Stack Project Generator**AutoDev** is an intelligent platform designed to accelerate software development by autonomously generating full-stack project scaffolds. By leveraging AI agents orchestrated with LangGraph, AutoDev takes user stories or Azure DevOps work items and converts them into runnable backend APIs, frontend UIs, database schemas, and test suites.
+Here is the **same content**, cleaned up and **properly formatted in Markdown**, with clear headings, spacing, and bullet structure. You can directly paste this into **README.md / GitHub / Notion** and it will render correctly.
 
-##🚀 Features* **AI Agent Orchestration**: Uses **LangGraph** to coordinate multiple specialized agents (Coordinator, Backend, Frontend, Database, Testing) to complete complex development tasks.
-* **Automated Code Generation**:
-* **Backend**: Generates FastAPI endpoints with Pydantic models.
-* **Frontend**: Creates functional React components styled with Tailwind CSS.
-* **Database**: Produces SQL schemas (PostgreSQL dialect) for data persistence.
-* **Tests**: Writes minimal `pytest` test suites to ensure basic functionality.
+---
 
+# AutoDev: AI-Powered Full-Stack Project Generator
 
-* **Azure DevOps Integration**: Connects to Azure DevOps to fetch work items and stories directly into the workflow.
-* **Live Execution Logs**: Streams real-time logs from the AI agents to the UI via Server-Sent Events (SSE).
-* **Project Management**: Create, manage, and view generated file content for multiple projects.
-* **Export**: Download the entire generated project as a `.zip` file.
-* **File Persistence**: generated code is saved to both the local filesystem and a SQLite database.
+**AutoDev** is an intelligent platform designed to accelerate software development by autonomously generating full-stack project scaffolds.
+By leveraging AI agents orchestrated with **LangGraph**, AutoDev takes user stories or Azure DevOps work items and converts them into runnable backend APIs, frontend UIs, database schemas, and test suites.
 
-##🛠️ Tech Stack###Backend* **Language**: Python 3.10+
+---
+
+## 🚀 Features
+
+### 🧠 AI Agent Orchestration
+
+* Uses **LangGraph** to coordinate multiple specialized agents:
+
+  * Coordinator
+  * Backend Agent
+  * Frontend Agent
+  * Database Agent
+  * Testing Agent
+* Enables structured, multi-step reasoning for complex development tasks.
+
+### 🛠 Automated Code Generation
+
+* **Backend**
+
+  * FastAPI endpoints
+  * Pydantic request/response models
+* **Frontend**
+
+  * React components (Vite)
+  * Styled with Tailwind CSS
+* **Database**
+
+  * SQL schemas (PostgreSQL dialect)
+* **Testing**
+
+  * Minimal `pytest` test suites for validation
+
+### 🔗 Azure DevOps Integration
+
+* Fetches work items and user stories directly from Azure DevOps using PAT authentication.
+
+### 📡 Live Execution Logs
+
+* Streams real-time agent logs to the UI using **Server-Sent Events (SSE)**.
+
+### 📁 Project Management
+
+* Create and manage multiple projects
+* Browse generated file content directly in the UI
+
+### 📦 Export & Persistence
+
+* Download generated projects as a `.zip`
+* Code is saved to:
+
+  * Local filesystem
+  * SQLite database (via SQLAlchemy)
+
+---
+
+## 🛠 Tech Stack
+
+### Backend
+
+* **Language**: Python 3.10+
 * **Framework**: FastAPI
-* **AI/LLM**: OpenAI API (`gpt-4o-mini`)
+* **AI / LLM**: OpenAI API (`gpt-4o-mini`)
 * **Orchestration**: LangGraph
-* **Database**: SQLite (via SQLAlchemy)
+* **Database**: SQLite (SQLAlchemy)
 * **Utilities**: `uvicorn`, `pydantic`, `requests`
 
-###Frontend* **Framework**: React (Vite)
+### Frontend
+
+* **Framework**: React (Vite)
 * **Styling**: Tailwind CSS
 * **Authentication**: Firebase Auth
 * **Routing**: React Router
 
 ---
 
-##📋 PrerequisitesBefore running the project, ensure you have the following installed:
+## 📋 Prerequisites
+
+Before running the project, ensure you have:
 
 * Python 3.10 or higher
 * Node.js and npm
-* An OpenAI API Key
+* An OpenAI API key
 * A Firebase project (for authentication)
 
 ---
 
-##⚙️ Installation & Setup###1. Backend Setup1. Navigate to the backend directory:
+## ⚙️ Installation & Setup
+
+### 1️⃣ Backend Setup
+
+1. Navigate to the backend directory:
+
 ```bash
 cd backend
-
 ```
 
+2. Create and activate a virtual environment (recommended):
 
-2. Create and activate a virtual environment (optional but recommended):
 ```bash
 python -m venv venv
+
 # Windows
 venv\Scripts\activate
-# macOS/Linux
+
+# macOS / Linux
 source venv/bin/activate
-
 ```
-
 
 3. Install dependencies:
-```bash
-pip install -r requirenments.txt
 
+```bash
+pip install -r requirements.txt
 ```
 
+> Ensure `langgraph`, `sqlalchemy`, and `openai` are installed.
 
-*(Note: Ensure `langgraph`, `sqlalchemy`, and `openai` are installed if not present in the txt file)*
-4. Set up environment variables:
-* Set your `OPENAI_API_KEY` in your environment variables or create a `.env` file.
+4. Set environment variables:
 
+* Add your OpenAI key:
 
-5. Initialize the database and run the server:
+```bash
+export OPENAI_API_KEY=your_key_here
+```
+
+or create a `.env` file.
+
+5. Run the backend server:
+
 ```bash
 uvicorn app.main:app --reload
-
 ```
 
+Backend will be available at:
+👉 `http://localhost:8000`
 
-The backend API will be available at `http://localhost:8000`.
+---
 
-###2. Frontend Setup1. Navigate to the frontend directory:
+### 2️⃣ Frontend Setup
+
+1. Navigate to the frontend directory:
+
 ```bash
 cd frontend/autodev-ui
-
 ```
-
 
 2. Install dependencies:
+
 ```bash
 npm install
-
 ```
-
 
 3. Configure Firebase:
-* Open `src/auth/firebase.js`.
-* Replace the empty `firebaseConfig` object with your actual Firebase project configuration keys.
 
+* Open `src/auth/firebase.js`
+* Replace `firebaseConfig` with your Firebase project credentials
 
-4. Run the development server:
+4. Start the development server:
+
 ```bash
 npm run dev
-
 ```
 
-
-The UI will be available at `http://localhost:5173`.
-
----
-
-##📖 Usage Guide1. **Login**: Open the frontend application. You can log in using Google (configured via Firebase).
-2. **Create Project**: Click on **"+ Create Project"** to initialize a new workspace (e.g., "ProjectAlpha").
-3. **Fetch Work Items**:
-* Navigate to the project detail page.
-* Enter your Azure DevOps **Organization**, **Project**, and **Personal Access Token (PAT)**.
-* Click "Fetch Work Items" to load your backlog.
-
-
-4. **Run Agents**:
-* Select a work item (or story) from the list and click **"Run"**.
-* Watch the **Live Execution Logs** panel as the agents analyze the story, generate code for backend/frontend/DB, and run tests.
-
-
-5. **View & Download**:
-* Once completed, you can browse the generated file structure in the UI.
-* Click the **Download Zip** button (if implemented in UI) or check the `backend/generated_projects/` folder on your disk for the source code.
-
-
+Frontend will be available at:
+👉 `http://localhost:5173`
 
 ---
 
-##📂 Project Structure```text
+## 📖 Usage Guide
+
+1. **Login**
+
+   * Open the frontend
+   * Sign in using Google (Firebase Auth)
+
+2. **Create Project**
+
+   * Click **+ Create Project**
+   * Provide a project name (e.g., `ProjectAlpha`)
+
+3. **Fetch Work Items**
+
+   * Open the project detail page
+   * Enter:
+
+     * Azure DevOps Organization
+     * Project Name
+     * Personal Access Token (PAT)
+   * Click **Fetch Work Items**
+
+4. **Run Agents**
+
+   * Select a work item or story
+   * Click **Run**
+   * Watch real-time execution logs as agents generate code
+
+---
+
+## 📂 Project Structure
+
+```text
 AutoDev/
 ├── backend/
 │   ├── app/
-│   │   ├── db/             # Database models and session setup
-│   │   ├── routes/         # API endpoints (auth, projects, logs, files)
-│   │   ├── services/       # AI Agents (Backend, Frontend, DB, Test, Coordinator)
-│   │   ├── logs/           # Runtime logs
-│   │   └── main.py         # App entry point
-│   ├── generated_projects/ # Output directory for AI-generated code
-│   └── autodev.db          # SQLite database
+│   │   ├── db/              # Database models and session setup
+│   │   ├── routes/          # API routes (projects, logs, files)
+│   │   ├── services/        # AI agents and coordinator logic
+│   │   ├── logs/            # Runtime execution logs
+│   │   └── main.py          # FastAPI entry point
+│   ├── generated_projects/  # AI-generated project outputs
+│   └── autodev.db           # SQLite database
 │
 └── frontend/autodev-ui/
     ├── src/
-    │   ├── auth/           # Firebase configuration
-    │   ├── components/     # UI components (Navbar, CodeViewer, etc.)
-    │   ├── context/        # React Contexts (Auth, Theme, BackendStatus)
-    │   ├── layouts/        # App layout wrappers
-    │   ├── pages/          # Main pages (Login, Home, Projects)
-    │   └── utils/          # API fetch utilities
+    │   ├── auth/            # Firebase authentication
+    │   ├── components/      # UI components
+    │   ├── context/         # React contexts
+    │   ├── layouts/         # Layout wrappers
+    │   ├── pages/           # App pages
+    │   └── utils/           # API helpers
     └── package.json
-
 ```
 
-##🤖 How It Works1. **Input**: The user provides a "Story" (Title + Description).
-2. **Coordinator Agent**: Analyzes the story, detects patterns (Auth, CRUD, etc.), and decomposes it into tasks.
-3. **Specialized Agents**:
-* **Backend Agent**: Writes `api.py` using FastAPI.
-* **Database Agent**: Writes `schema.sql`.
-* **Frontend Agent**: Writes `Generated.jsx`.
-* **Test Agent**: Writes `test_basic.py`.
+---
 
+## 🤖 How It Works
 
-4. **Persistence**: Files are saved to the `generated_projects` directory and indexed in the database.
+1. **Input**
+
+   * User provides a story (Title + Description)
+
+2. **Coordinator Agent**
+
+   * Detects patterns (CRUD, Auth, etc.)
+   * Decomposes the story into tasks
+
+3. **Specialized Agents**
+
+   * **Backend Agent** → `api.py` (FastAPI)
+   * **Database Agent** → `schema.sql`
+   * **Frontend Agent** → `Generated.jsx`
+   * **Test Agent** → `test_basic.py`
+
+4. **Persistence**
+
+   * Generated files are stored in:
+
+     * `generated_projects/`
+     * SQLite database for indexing and retrieval
 
 ---
+
+If you want, I can next:
+
+* Make this **hackathon-ready**
+* Shorten it to a **1-page submission**
+* Convert it into a **pitch deck**
+* Improve wording to sound more **research-grade / academic**
+
+Just tell me.
