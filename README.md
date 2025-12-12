@@ -1,5 +1,3 @@
----
-
 #AutoDev: AI-Powered Full-Stack Project Generator**AutoDev** is an intelligent platform designed to accelerate software development by autonomously generating full-stack project scaffolds. By leveraging AI agents orchestrated with LangGraph, AutoDev takes user stories or Azure DevOps work items and converts them into runnable backend APIs, frontend UIs, database schemas, and test suites.
 
 ##🚀 Features* **AI Agent Orchestration**: Uses **LangGraph** to coordinate multiple specialized agents (Coordinator, Backend, Frontend, Database, Testing) to complete complex development tasks.
