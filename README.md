@@ -1,5 +1,3 @@
-Here is the **same content**, cleaned up and **properly formatted in Markdown**, with clear headings, spacing, and bullet structure. You can directly paste this into **README.md / GitHub / Notion** and it will render correctly.
-
 ---
 
 # AutoDev: AI-Powered Full-Stack Project Generator
