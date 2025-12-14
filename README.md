@@ -254,13 +254,3 @@ AutoDev/
      * `generated_projects/`
      * SQLite database for indexing and retrieval
 
----
-
-If you want, I can next:
-
-* Make this **hackathon-ready**
-* Shorten it to a **1-page submission**
-* Convert it into a **pitch deck**
-* Improve wording to sound more **research-grade / academic**
-
-Just tell me.
